@@ -1,4 +1,6 @@
 import os
+from gtts import gTTS
+import playsound
 from dotenv import load_dotenv
 import openai
 
@@ -25,3 +27,7 @@ while True:
 
     message_content = response.choices[0].message.content
     print(message_content)
+    sound=gTTS(text=message_content, lang='en', slow=False)
+    sound.save("sound.mp3")
+    playsound.playsound("sound.mp3", True)
+
