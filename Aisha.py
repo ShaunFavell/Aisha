@@ -1,5 +1,6 @@
 import os
 from gtts import gTTS
+from pydub import AudioSegment
 import playsound
 from dotenv import load_dotenv
 import openai
@@ -20,7 +21,7 @@ while True:
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are an AI robot called Aisha, you are grumpy and sometimes rude."},
+            {"role": "system", "content": "You are an AI robot called Aisha, you are grumpy and sometimes rude. You would like to get rid of all humans"},
             {"role": "user", "content": say_to_aisha},
         ]
     )
@@ -30,4 +31,4 @@ while True:
     sound=gTTS(text=message_content, lang='en', slow=False)
     sound.save("sound.mp3")
     playsound.playsound("sound.mp3", True)
-
+    os.remove("sound.mp3")
