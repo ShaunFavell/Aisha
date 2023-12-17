@@ -4,7 +4,7 @@ Aisha is Life - AI structured code for Aisha, a simulated human robotic project 
 https://www.youtube.com/@aishaproject 
 https://www.facebook.com/theaishaproject
  
-Hello World: my name is Dr Shaun Favell - I am from the United Kingdom and I am the founder of The Aisha Project
+Hello World, my name is Dr Shaun Favell - I am the founder of The Aisha Project
 
 I am working on a fun. follow along, open source engineering project to build an affordable humanoid robot that will interact using an AI LLM. The key purpose of the project is for it to be replicated by hobbyists who have access to home equipment such as 3D printing, Arduino board building, and simple DIY skills. It is a follow along project, that invites others to contribute and build something amazing and fun, and accessible to those on a restricted budget.
 
