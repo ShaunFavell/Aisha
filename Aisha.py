@@ -59,10 +59,10 @@ def speech_to_text():
 
     except sr.WaitTimeoutError:
         print("Timeout waiting for audio")
-        return "Are you ignoring me now?"
+        return "timeout"
     except sr.UnknownValueError:
         print("Google Speech Recognition could not understand audio")
-        return "Hello? Did you say something?"
+        return "unrecognised"
 
 
 while True:
@@ -79,11 +79,10 @@ while True:
         adjust_sensitivity()
         continue
 
-    if say_to_aisha == "Are you ignoring me now?" or say_to_aisha == "Hello? Did you say something?":
-        message_content = say_to_aisha
-        # Call the function to adjust sensitivity
+    if say_to_aisha == "timeout":
+        message_content = "I'm lonely, are you ignoring me"
 
-    else:
+    elif say_to_aisha != "unrecognised":
         response = openai.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -93,6 +92,8 @@ while True:
             ]
         )
         message_content = response.choices[0].message.content
+    else:
+        continue
 
     print(message_content)
     sound=gTTS(text=message_content, lang='en', slow=False)
