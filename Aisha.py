@@ -15,9 +15,8 @@ from dotenv import load_dotenv
 import openai
 from functions.speech_functions import adjust_sensitivity, speech_to_text
 
-# If you have a .env file in the same directory as this file
-load_dotenv()
-token = os.getenv("OPENAI_API_KEY")
+load_dotenv() # take environment variables from .env.
+token = os.getenv("OPENAI_API_KEY") # Accessing variables.
 
 openai.api_key = token  # Set the API key directly in the openai module
 
