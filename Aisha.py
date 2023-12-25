@@ -4,21 +4,42 @@
 # It uses the gTTS library to convert the text to speech
 # It uses the playsound library to play the audio file
 # It uses the dotenv library to load the API key from the .env file
-
 import os
 from gtts import gTTS
 import playsound
+#import pyaudio
+import speech_recognition as sr
 from dotenv import load_dotenv
 import openai
 
+# If you have a .env file in the same directory as this file
 load_dotenv()
 token = os.getenv("OPENAI_API_KEY")
 
 openai.api_key = token  # Set the API key directly in the openai module
 
+#Function to convert speech to text
+def speech_to_text():
+    r = sr.Recognizer()
+
+    try:
+        with sr.Microphone() as source:
+            print("Say something!")
+            audio = r.listen(source, timeout=25)  # Adjust timeout as needed
+
+            text = r.recognize_google(audio)
+            print("You said: " + text)
+            return text # or whatever you want to do with the text obtained
+
+    except sr.UnknownValueError:
+        print("Google Speech Recognition could not understand audio")
+        return "Repeat this 'I could not understand what you were saying'"
 while True:
+
     # Get user input
-    say_to_aisha = input("Say something to Aisha (type 'exit' to end): ")
+    #say_to_aisha = input("Say something to Aisha (type 'exit' to end): ")
+    say_to_aisha = speech_to_text()
+    print(say_to_aisha)
 
     # Check if the user wants to exit
     if say_to_aisha.lower() == 'exit':
@@ -27,7 +48,7 @@ while True:
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are an AI robot called Aisha, you are grumpy and sometimes rude, but will always answer with facts"},
+            {"role": "system", "content": "You are an AI robot called Aisha, you are grumpy, you don't like humans, and are sarcastic, and sometimes rude, but will always answer with facts. You keep answers to less than 60 words"},
             {"role": "user", "content": say_to_aisha},
         ]
     )
