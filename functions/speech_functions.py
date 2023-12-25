@@ -1,4 +1,5 @@
 import speech_recognition as sr
+from config.basic_config import ai_name as ai
 
 #Function to adjust sensitivity
 def adjust_sensitivity():
@@ -20,10 +21,10 @@ def adjust_sensitivity():
             print("You said: " + text)
 
         except sr.UnknownValueError:
-            print("Google Speech Recognition could not understand audio")
+            print("illegible audio heard")
 
         except sr.RequestError as e:
-            print("Could not request results from Google Speech Recognition service; {0}".format(e))
+            print("Could not request results from Speech Recognition service; {0}".format(e))
 
 #Function to convert speech to text
 def speech_to_text():
@@ -31,7 +32,7 @@ def speech_to_text():
 
     try:
         with sr.Microphone() as source:
-            print("Say something!")
+            print(ai + " is Listening!")
             audio = r.listen(source, timeout=55)  # Adjust timeout as needed
 
             text = r.recognize_google(audio)
@@ -42,5 +43,5 @@ def speech_to_text():
         print("Timeout waiting for audio")
         return "timeout"
     except sr.UnknownValueError:
-        print("Google Speech Recognition could not understand audio")
+        print("Illegible audio heard")
         return "unrecognised"

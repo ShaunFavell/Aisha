@@ -1,14 +1,13 @@
-# This is the main file for the Aisha voice interface
-# It uses the OpenAI API to generate responses to user input.
+# This is the main file for the Aisha speech interface
+# It uses the OpenAI API to generate responses to user input:
 #   You will need to set up an account and get an API key from https://beta.openai.com/
-# It uses the gTTS library to convert the text to speech
-# It uses the playsound library to play the audio file
-# It uses the dotenv library to load the API key from the .env file
+#   In the root directory of this project, create a file called .env
+#   In the .env file, add the following line:   OPENAI_API_KEY="your-api-key"
 
 #Speech recognition commands
 # adjust sensitivity (to adjust the sensitivity of the microphone)
 # exit (to exit the program)
-
+from config.basic_config import ai_personality as personality
 import os
 from gtts import gTTS
 import playsound
@@ -44,7 +43,7 @@ while True:
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system",
-                 "content": "You are an AI robot called Aisha, you are grumpy, you don't like humans, and are sarcastic, and sometimes rude, but will always answer with facts. You keep answers to less than 60 words"},
+                 "content": personality},
                 {"role": "user", "content": say_to_aisha},
             ]
         )
