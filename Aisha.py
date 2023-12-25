@@ -50,8 +50,8 @@ while True:
     else:
         continue
 
-    print(message_content)
-    sound=gTTS(text=message_content, lang='en', slow=False)
-    sound.save("sound.mp3")
-    playsound.playsound("sound.mp3", True)
+    # print(message_content)
+    sound=gTTS(text=message_content, lang='en', slow=False) # text to speech(voice)
+    sound.save("sound.mp3") # save the audio file as sound.mp3
+    playsound.playsound("sound.mp3", True) # True to play asynchronously
     os.remove("sound.mp3")
