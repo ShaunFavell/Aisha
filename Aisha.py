@@ -4,6 +4,11 @@
 # It uses the gTTS library to convert the text to speech
 # It uses the playsound library to play the audio file
 # It uses the dotenv library to load the API key from the .env file
+
+#Speech recognition commands
+# adjust sensitivity (to adjust the sensitivity of the microphone)
+# exit (to exit the program)
+
 import os
 from gtts import gTTS
 import playsound
